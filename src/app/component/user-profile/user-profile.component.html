@@ -1,0 +1,77 @@
+<app-header></app-header>
+<form [formGroup]="userForm" class="text-center">
+    <div class="row">
+        <div class="col-md-3 text-white mx-auto ">
+            <div class="mb-3">
+                <h1 class="">Thông tin người dùng</h1>
+              <label for="phone" class="form-label" required>Họ và tên:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="phone"
+                formControlName="fullname"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="phone" class="form-label" required>Địa chỉ:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="phone"
+                formControlName="address"
+                [class.is-invalid]="userForm.get('address')?.invalid && userForm.get('address')?.touched"
+              />
+              @if(userForm.get('address')?.invalid && userForm.get('address')?.touched) {
+              <div class="invalid-feedback">
+                Địa chỉ phải tối thiểu 3 ký tự
+              </div>
+              }
+            </div>
+            <div class="mb-3">
+                <label for="phone" class="form-label" required>Mật khẩu</label>
+              <input
+                type="text"
+                class="form-control"
+                id="phone"
+                formControlName="password"
+                [class.is-invalid]="userForm.get('password')?.invalid && userForm.get('password')?.touched"
+              />
+              @if(userForm.get('password')?.invalid && userForm.get('password')?.touched) {
+              <div class="invalid-feedback">
+                Mật khẩu phải tối thiểu 3 ký tự
+              </div>
+              }
+            </div>
+            <div class="mb-3">
+                <label for="phone" class="form-label" required>Nhập lại mật khẩu</label>
+              <input
+                type="text"
+                class="form-control"
+                id="phone"
+                formControlName="retype_password"
+                [class.is-invalid]="userForm.get('retype_password')?.invalid && userForm.get('retype_password')?.touched"
+              />
+              @if(userForm.get('retype_password')?.invalid && userForm.get('retype_password')?.touched) {
+              <div class="invalid-feedback">
+                Mật khẩu nhập lại phải tối thiểu 3 ký tự
+              </div>
+              }
+            </div>
+            <div class="mb-3">
+                <label for="phone" class="form-label" required>Ngày sinh</label>
+              <input
+                type="date"
+                class="form-control"
+                id="phone"
+                formControlName="date_of_birth"
+                [class.is-invalid]="userForm.get('date_of_birth')?.invalid && userForm.get('date_of_birth')?.touched"
+              />
+
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-success mt-3" type="submit" (click)="save()">Đổi thông tin</button>
+</form>
+
+<app-footer></app-footer>

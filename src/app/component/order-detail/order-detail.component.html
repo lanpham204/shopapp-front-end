@@ -1,0 +1,70 @@
+<app-header></app-header>
+<div class="container">
+    <div class="confirmation-container">
+        <div class="intro-section">
+            <h1 class="text-center">Thông tin chi tiết đơn hàng</h1>
+        </div>
+    </div>
+    <div class="row ">
+        <div class="col-md-6">
+            <h1 class="product-header">Thông tin người nhận</h1>
+            <div class="mb-3">
+                <p class="form-label">Họ và tên: {{ order.fullname }}</p>
+            </div>
+            <div class="mb-3">
+                <p class="form-label">Email: {{ order.email }}</p>
+            </div>
+            <div class="mb-3">
+                <p class="form-label">Số điện thoại: {{ order.phone_number }}</p>
+            </div>
+            <div class="mb-3">
+                <p class="form-label">Địa chỉ: {{ order.address }}</p>
+            </div>
+            <div class="mb-3">
+                <p class="form-label">Ghi chú: {{ order.note }}</p>
+            </div>
+            <div class="mb-3">
+                <p class="form-label">Phương thức vận chuyển: {{order.shipping_method}} </p>
+            </div>
+            <div class="mb-3">
+                <p class="form-label">Phương thức thanh toán: {{ order.payment_method}}</p>
+            </div>
+        </div>
+       <div class="col-md-6">
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col" class="text-start">Sản phẩm</th>
+                    <th scope="col">Số lượng</th>
+                    <th scope="col">Đơn giá</th>
+                    <th scope="col">Tổng giá</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (order_detail of order.order_details; track order_detail) {
+
+                <tr>
+                    <td>
+                        <div class="product-info">
+                            <img [src]="order_detail.product.thumbnail" alt="Product Image" class="product-image">
+                            <span class="product-name">{{order_detail.product.name}}</span>
+                        </div>
+                    </td>
+                    <td>{{order_detail.number_of_products }}</td>
+                    <td>{{ order_detail.product.price| currency: 'VND': 'symbol':'1.0-0'}}</td>
+                    <td>{{order_detail.number_of_products * order_detail.product.price | currency:
+                        'VND':'symbol':'1.0-0'}}</td>
+                </tr>
+                }
+
+            </tbody>
+        </table>
+        <div class="text-start mt-3">
+            <h4 class="header-text text-end">Tổng tiền: {{order.total_money| currency: 'VND': 'symbol':'1.0-0'}}</h4>
+        </div>
+       </div>
+
+    </div>
+</div>
+
+<app-footer></app-footer>
